@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  web:
+    image: flask-redis-app:latest
+    ports:
+      - "8080:5000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    depends_on:
+      - redis
+    secrets:
+      - redis_password
+
+  redis:
+    image: redis:alpine
+    command: >
+      sh -c "redis-server --save 60 1 --requirepass $$(cat /run/secrets/redis_password)"
+    volumes:
+      - redis_data:/data
+    secrets:
+      - redis_password
+
+volumes:
+  redis_data:
+
+secrets:
+  redis_password:
+    external: true
