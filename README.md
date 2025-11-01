@@ -25,9 +25,8 @@ It’s deployed securely using **Docker Swarm**, **Docker Secrets**, and **named
 ---
 
 ## ⚙️ Setup Instructions
-
-1️⃣ Clone the repo
 ```bash
+1️⃣ Clone the repo
 git clone https://github.com/<your-username>/02-flask-redis-counter.git
 cd 02-flask-redis-counter
 2️⃣ Create a Redis password secret
